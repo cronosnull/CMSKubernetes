@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cmsmon-int
+  name: cmsmon-int-mon
   namespace: default
   labels:
-     app: cmsmon-int
+     app: cmsmon-int-mon
 spec:
    replicas: 1
    selector:
      matchLabels:
-       app: cmsmon-int
+       app: cmsmon-int-mon
    template:
       metadata:
          labels:
-           app: cmsmon-int
+           app: cmsmon-int-mon
       spec:
         containers:
         - args:
@@ -24,10 +24,10 @@ spec:
           name: intelligence
           imagePullPolicy: Always
           volumeMounts:
-          - name: intelligence-secrets
+          - name: intelligence-secrets-mon
             mountPath: /etc/secrets
             readOnly: true
         volumes:
-        - name: intelligence-secrets
+        - name: intelligence-secrets-mon
           secret:
-            secretName: intelligence-secrets
+            secretName: intelligence-secrets-mon
